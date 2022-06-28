@@ -2,9 +2,14 @@ const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 
 const port = process.env.PORT || 3000;
-const url =
-  "mongodb+srv://mongodbuser:kdiduEc9G3LtgEAP@cluster0.nlra7hi.mongodb.net/?retryWrites=true&w=majority";
-const dbName = "ocean_bancodedados_28_06_2022";
+const {
+  DBUSER,
+  DBPASS,
+  DBHOST,
+  DBNAME
+} = process.env;
+const url = `mongodb+srv://${DBUSER}:${DBPASS}@${DBHOST}/?retryWrites=true&w=majority`;
+const dbName = DBNAME || 'test';
 
 async function main() {
   // Conexão com o banco de dados
